@@ -67,14 +67,15 @@ def make_text(input_data): #only takes in one object
     key2 = words[1]
 
     while True:
-        try:
+        if (key1, key2) in chains:
             value = choice(chains[(key1, key2)])
             result = result + value + ' '
             key1 = key2
             key2 = value
-        except KeyError:
+        else:
             break
+        
 
     return result
 
-print make_text(make_chains('green-eggs.txt'))#input .txt file to run ONLY PLACE!
+print make_text(make_chains('gettysburg.txt'))#input .txt file to run ONLY PLACE!
