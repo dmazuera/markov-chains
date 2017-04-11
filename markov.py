@@ -2,6 +2,7 @@
 
 
 from random import choice
+import sys
 
 
 def open_and_read_file(file_path):
@@ -78,4 +79,4 @@ def make_text(input_data): #only takes in one object
 
     return result
 
-print make_text(make_chains('gettysburg.txt'))#input .txt file to run ONLY PLACE!
+print make_text(make_chains(sys.argv[1])) #input .txt file to run ONLY PLACE!
