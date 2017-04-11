@@ -40,7 +40,7 @@ def make_chains(text_string):
         ['mary', 'juanita']
     """
 
-    words = open_and_read_file('green-eggs.txt').split() #splits string
+    words = open_and_read_file(text_string).split() #splits string
 
     chains = {}
 
@@ -51,16 +51,20 @@ def make_chains(text_string):
         else:
             chains[(words[index], words[index+1])].append(words[index+2])
 
-    return chains
+    return (chains, words) #passing tuple to next function
 
 
-def make_text(chains):
+def make_text(input_data): #only takes in one object
     """Returns text from chains."""
 
-    result = 'Would you '
+    chains, words = input_data[0], input_data[1] #unpacks input_object
 
-    key1 = "Would"
-    key2 = "you"
+    #starts printed empty string with first 2 words in .txt
+    result = '{} {} '.format(words[0], words[1])
+
+
+    key1 = words[0]
+    key2 = words[1]
 
     while True:
         try:
@@ -73,4 +77,4 @@ def make_text(chains):
 
     return result
 
-print make_text(make_chains('gettysburg.txt'))
+print make_text(make_chains('green-eggs.txt'))#input .txt file to run ONLY PLACE!
