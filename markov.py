@@ -55,28 +55,32 @@ def make_chains(text_string):
     return (chains, words) #passing tuple to next function
 
 
+
+
 def make_text(input_data): #only takes in one object
     """Returns text from chains."""
 
-    chains, words = input_data[0], input_data[1] #unpacks input_object
+    chains, words = (input_data[0], input_data[1]) #unpacks input_tuple
+
+
+    #will loop until a capitalized key1[0] is selected
+    while True:
+        key1,key2 = choice(chains.keys())
+        if key1[0].isupper():
+            break
 
     #starts printed empty string with first 2 words in .txt
-    result = '{} {} '.format(words[0], words[1])
-
-
-    key1 = words[0]
-    key2 = words[1]
+    result = '{} {} '.format(key1, key2)
 
     while True:
         if (key1, key2) in chains:
-            value = choice(chains[(key1, key2)])
-            result = result + value + ' '
+            random_value = choice(chains[(key1, key2)])
+            result = result + random_value + ' '
             key1 = key2
-            key2 = value
+            key2 = random_value
         else:
             break
-        
 
     return result
-
+    
 print make_text(make_chains(sys.argv[1])) #input .txt file to run ONLY PLACE!
